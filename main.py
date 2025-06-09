@@ -28,6 +28,9 @@ class WorldCapitalsQuiz:
         self.sound_on = True
         self.all_data = self.load_data()
         self.overlay = OverlayElements(self.root, self.canvas)
+        # Make mute button a child of root, not canvas
+        self.mute_btn = tk.Button(self.root, text="Mute Music", font=("Arial", 14), command=self.toggle_sound, bg="#e67e22", fg="#8B0000")
+        self.mute_btn.place(relx=0.98, rely=0.05, anchor="ne")
         self.quiz_game = QuizGame(self.root, self.canvas, self.all_data, self.create_main_menu)
         self.create_main_menu()
 
@@ -46,8 +49,6 @@ class WorldCapitalsQuiz:
         title.place(relx=0.5, rely=0.2, anchor="center")
         start_btn = tk.Button(self.canvas, text="Start Quiz", font=("Arial", 20), command=self.choose_continent, width=20, bg="#3498db", fg="#8B0000")
         start_btn.place(relx=0.5, rely=0.35, anchor="center")
-        mute_btn = tk.Button(self.canvas, text="Mute Music", font=("Arial", 14), command=self.toggle_sound, bg="#e67e22", fg="#8B0000")
-        mute_btn.place(relx=0.5, rely=0.45, anchor="center")
         exit_btn = tk.Button(self.canvas, text="Exit", font=("Arial", 14), command=self.root.quit, bg="#c0392b", fg="#8B0000")
         exit_btn.place(relx=0.5, rely=0.55, anchor="center")
 

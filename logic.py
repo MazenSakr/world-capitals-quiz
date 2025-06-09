@@ -87,6 +87,12 @@ class QuizGame:
 
     def clear_screen(self, keep_overlay=False):
         for widget in self.canvas.winfo_children():
-            if keep_overlay and hasattr(self.parent, "overlay") and widget in (self.parent.overlay.logo_label, self.parent.overlay.signature):
-                continue
+            if keep_overlay:
+                keep_widgets = []
+                if hasattr(self.parent, "overlay"):
+                    keep_widgets.extend([self.parent.overlay.logo_label, self.parent.overlay.signature])
+                if hasattr(self.parent, "mute_btn"):
+                    keep_widgets.append(self.parent.mute_btn)
+                if widget in keep_widgets:
+                    continue
             widget.destroy()
